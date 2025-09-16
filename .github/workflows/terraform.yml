@@ -91,3 +91,25 @@ jobs:
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
+
+  aws:
+    name: '"Configure AWS Credentials" Action for GitHub Actions'
+    description: AWS creds configuration
+    runs:
+      using: node20
+      main: dist/index.js
+      post: dist/cleanup/index.js
+
+    inputs:
+      aws-region:
+        description: ${AWS_REGION}
+        required: true
+      role-to-assume:
+        description: The Amazon Resource Name (ARN) of the role to assume. Use the provided credentials to assume an IAM role and configure the Actions environment with the assumed role credentials rather than with the provided credentials.
+        required: false
+      aws-access-key-id:
+        description: ${AWS_ACCESS_KEY}
+        required: true
+      aws-secret-access-key:
+        description: ${AWS_SECRET_ACCESS_KEY}
+        required: true
