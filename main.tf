@@ -5,7 +5,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "s3bucket" {
-  bucket = "bigbucketgHH"
+  bucket = "bigbucketg2025tutu"
 
   tags = {
     Name        = "My bucket"
