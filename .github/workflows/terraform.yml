@@ -92,3 +92,17 @@ jobs:
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
 
+
+  aws:
+    name: '"Configure AWS Credentials" Action for GitHub Actions'
+    description: AWS creds configuration
+    runs:
+      using: node20
+      main: dist/index.js
+      post: dist/cleanup/index.js
+
+    inputs:
+      aws-region: ${AWS_REGION}
+      aws-access-key-id: ${AWS_ACCESS_KEY}
+      aws-secret-access-key: ${AWS_SECRET_ACCESS_KEY}
+
