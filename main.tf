@@ -9,7 +9,7 @@ terraform {
 provider "aws" {
   profile = "default"
   version = "~> 3.0"
-  region = "eu-west-3"
+  region  = "eu-west-3"
 }
 
 resource "aws_s3_bucket" "s3bucket" {
@@ -40,4 +40,4 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "s3bucket_encrypti
 
 
 
-}
+
